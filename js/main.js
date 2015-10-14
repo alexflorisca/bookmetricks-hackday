@@ -1,9 +1,11 @@
 "use strict";
 
 /**
- * TODO: Filter by institution
  * TODO: Think about and write down the challenges of styling when HTML is split across several components
  * TODO: Look into separating the html into separate files
+ * TODO: Require .jsx files without specifying jsx extension
+ * TODO: Make it a reusable component.
+ * TODO: Style it
  */
 
 var React =                 require('react'),

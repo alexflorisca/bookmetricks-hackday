@@ -1,6 +1,6 @@
-let React = require('react'),
-    MembersList = require('./MembersList.jsx'),
-    SearchBox = require('./SearchBox.jsx');
+let React =         require('react'),
+    MembersList =   require('./MembersList.jsx'),
+    SearchBox =     require('./SearchBox.jsx');
 
 class FilterableMembersList extends React.Component {
     constructor() {
@@ -9,14 +9,7 @@ class FilterableMembersList extends React.Component {
             filterText: ''
         };
 
-        this.handleUserInput = this.handleUserInput.bind(this);
-    }
-
-
-    handleUserInput(filterText) {
-        this.setState({
-            filterText: filterText
-        });
+        this._handleUserInput = this._handleUserInput.bind(this);
     }
 
 
@@ -26,13 +19,20 @@ class FilterableMembersList extends React.Component {
                 <h2>Members List</h2>
                 <SearchBox
                     filterText={this.state.filterText}
-                    onUserInput={this.handleUserInput} />
+                    onUserInput={this._handleUserInput} />
 
                 <MembersList
                     countriesWithMembers={this.props.countriesWithMembers}
                     filterText={this.state.filterText} />
             </div>
         );
+    }
+
+
+    _handleUserInput(filterText) {
+        this.setState({
+            filterText: filterText
+        });
     }
 }
 
