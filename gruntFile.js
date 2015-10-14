@@ -51,6 +51,9 @@ module.exports = function(grunt) {
 
 
         browserify: {
+            options: {
+              extension: ["jsx"]
+            },
             dev: {
                 options: {
                     // Add source maps
@@ -60,7 +63,7 @@ module.exports = function(grunt) {
                     }
                 },
                 src: [
-                    'js/**/*.js'
+                    'js/main.js'
                 ],
                 dest: 'static/js/build.js'
             },
@@ -75,24 +78,6 @@ module.exports = function(grunt) {
                 dest:'static/js/build.js'
             }
         },
-
-        clean: ["js/es5/"],
-
-        babel: {
-            options: {
-                sourceMap: true
-            },
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: 'js',
-                    src: ['modules/*.js', 'main.js'],
-                    dest: 'js/es5',
-                    ext: '.js'
-                }]
-            }
-        },
-
 
 		uglify: {
 			js: {
@@ -122,8 +107,8 @@ module.exports = function(grunt) {
             },
 
             js: {
-                files: ['js/main.js', 'js/modules/*.js', 'gruntFile.js'],
-                tasks: ['clean', 'browserify:dev']
+                files: ['js/main.js', 'js/components/*.js*', 'gruntFile.js'],
+                tasks: ['browserify:dev']
             }
 		}
 	});
@@ -135,8 +120,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-browserify');
-    grunt.loadNpmTasks('grunt-babel');
 
-	grunt.registerTask('default', ['sass:dev', 'clean', 'browserify:dev', 'watch']);
-    grunt.registerTask('build', ['sass:prod', 'cssmin', 'clean', 'browserify:prod', 'uglify', 'watch']);
+	grunt.registerTask('default', ['sass:dev', 'browserify:dev', 'watch']);
+    grunt.registerTask('build', ['sass:prod', 'cssmin', 'browserify:prod', 'uglify', 'watch']);
 };
