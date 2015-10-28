@@ -1,1 +1,7 @@
 @import "components/Base";
+
+body{
+  color: black;
+  transition: width 1s ease;
+  border: 1px solid blue;
+}

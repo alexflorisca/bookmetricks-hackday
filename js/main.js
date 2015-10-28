@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * TODO: Think about and write down the challenges of styling when HTML is split across several components
@@ -43,3 +43,5 @@ ReactDOM.render(
     <FilterableMembersList countriesWithMembers={data} />,
     document.getElementById('FilterableMembersList')
 );
+
+throw "Hey there";

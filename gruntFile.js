@@ -2,23 +2,6 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		// Lint all javascript files
-		jshint: {
-		  // define the files to lint
-		  files: ['gruntfile.js', 'js/**/*.js'],
-		  // configure JSHint (documented at http://www.jshint.com/docs/)
-		  options: {
-		      // more options here if you want to override JSHint defaults
-		    globals: {
-		      jQuery: true,
-		      console: true,
-		      module: true,
-		      angular: true
-		    }
-		  }
-		},
-
-
 		sass: {
 			dev: {
                 options: {

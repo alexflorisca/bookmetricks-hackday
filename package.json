@@ -1,28 +1,40 @@
 {
-  "name": "simple-scaffolding",
-  "description": "App description",
+  "name": "filterable-list",
+  "description": "Filterbale list",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "test": "node_modules/karma/bin/karma start",
-    "test-once": "node_modules/karma/bin/karma start --single-run"
+    "test-once": "node_modules/karma/bin/karma start --single-run",
+    "lint": "jsxhint js",
+    "clean": "rm -r static/* && mkdirp static/js && mkdirp static/css",
+    "update-autoprefixer": "npm update caniuse-db",
+    "watch:css": "watch 'npm run build:css' scss",
+    "watch:js": "watch 'npm run build:js' js",
+    "build:css": "sass scss/style.scss --sourcemap=auto static/css/style.css && postcss --use autoprefixer --autoprefixer.browsers 'last 5 versions' static/css/style.css -o static/css/style.css && cssmin static/css/style.css > static/css/style.min.css",
+    "build:js": "browserify js/main.js --transform=babelify --extension=jsx --debug > static/js/build.js && uglifyjs static/js/build.js > static/js/build.min.js",
+    "build:prod": "npm run update-autoprefixer && npm run clean && npm run build:css && npm run build:js",
+    "build:dev": "npm run clean && parallelshell 'npm run watch:css' 'npm run watch:js'"
   },
   "dependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.0.3",
     "babelify": "^6.3.0",
+    "browserify": "^12.0.0",
+    "cssmin": "^0.4.3",
     "function-bind": "^1.0.2",
     "grunt": "0.4.x",
     "grunt-browserify": "^4.0.1",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-cssmin": "0.10.0",
-    "grunt-contrib-jshint": "0.10.x",
     "grunt-contrib-sass": "0.8.x",
     "grunt-contrib-uglify": "0.6.x",
     "grunt-contrib-watch": "0.6.x",
     "jasmine-core": "^2.3.4",
+    "jsxhint": "^0.15.1",
     "karma": "^0.12.36",
     "karma-browserify": "^4.2.1",
     "karma-chrome-launcher": "^0.2.0",
@@ -33,7 +45,13 @@
     "karma-mocha-reporter": "^1.0.2",
     "karma-opera-launcher": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.0",
-    "karma-safari-launcher": "^0.1.1"
+    "karma-safari-launcher": "^0.1.1",
+    "mkdirp": "^0.5.1",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.3.1",
+    "rimraf": "^2.4.3",
+    "uglify-js": "^2.5.0",
+    "watch": "^0.16.0"
   },
   "engines": {
     "node": ">= 0.10.32"
