@@ -33,42 +33,34 @@ module.exports = function(grunt) {
 		},
 
 
-        browserify: {
-            options: {
-              extension: ["jsx"]
-            },
-            dev: {
-                options: {
-                    // Add source maps
-                    transform: ["babelify"],
-                    browserifyOptions: {
-                        debug: true
-                    }
-                },
-                src: [
-                    'js/main.js'
-                ],
-                dest: 'static/js/build.js'
-            },
-            prod: {
-                options: {
-                    transform: ["babelify"],
-                    browserifyOptions: {
-                        debug: false
-                    }
-                },
-                src: '<%= browserify.dev.src %>',
-                dest:'static/js/build.js'
-            }
+        webpack: {
+          prod: {
+              devtool: 'source-map',
+              entry: "./js/main.jsx",
+              output: {
+                  path: "./static/js/",
+                  filename: "build.js"
+              },
+              module: {
+                  loaders: [
+                      {
+                          //tell webpack to use jsx-loader for all *.jsx files
+                          test: /\.jsx$/,
+                          loader: 'jsx-loader?insertPragma=React.DOM&harmony'
+                      },
+                      {
+                          test: /\.jsx$/,
+                          loader: 'babel-loader'
+                      }
+                  ]
+              }
+          }
         },
 
 		uglify: {
 			js: {
-                options: {
-                    sourceMap: true
-                },
 				files: {
-					'static/js/build.min.js': ['<%= browserify.prod.dest %>']
+					'static/js/build.min.js': 'static/js/build.js'
 				}
 			}
 		},
@@ -90,8 +82,8 @@ module.exports = function(grunt) {
             },
 
             js: {
-                files: ['js/main.js', 'js/components/*.js*', 'gruntFile.js'],
-                tasks: ['browserify:dev']
+                files: ['js/main.jsx', 'js/components/*.js*', 'gruntFile.js'],
+                tasks: ['webpack:prod']
             }
 		}
 	});
@@ -102,8 +94,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-webpack');
 
-	grunt.registerTask('default', ['sass:dev', 'browserify:dev', 'watch']);
-    grunt.registerTask('build', ['sass:prod', 'cssmin', 'browserify:prod', 'uglify', 'watch']);
+	grunt.registerTask('default', ['sass:dev', 'webpack:prod', 'watch']);
+    grunt.registerTask('build', ['sass:prod', 'cssmin', 'webpack:prod', 'uglify']);
 };

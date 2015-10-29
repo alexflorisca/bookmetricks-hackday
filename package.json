@@ -22,6 +22,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
+    "babel-core": "^5.8.33",
+    "babel-loader": "^5.3.2",
     "babelify": "^6.3.0",
     "browserify": "^12.0.0",
     "cssmin": "^0.4.3",
@@ -33,7 +35,9 @@
     "grunt-contrib-sass": "0.8.x",
     "grunt-contrib-uglify": "0.6.x",
     "grunt-contrib-watch": "0.6.x",
+    "grunt-webpack": "^1.0.11",
     "jasmine-core": "^2.3.4",
+    "jsx-loader": "^0.13.2",
     "jsxhint": "^0.15.1",
     "karma": "^0.12.36",
     "karma-browserify": "^4.2.1",
@@ -51,7 +55,9 @@
     "postcss-cli": "^2.3.1",
     "rimraf": "^2.4.3",
     "uglify-js": "^2.5.0",
-    "watch": "^0.16.0"
+    "watch": "^0.16.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
   },
   "engines": {
     "node": ">= 0.10.32"

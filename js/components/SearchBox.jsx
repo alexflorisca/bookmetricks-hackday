@@ -20,6 +20,7 @@ class SearchBox extends React.Component {
 
 
     _handleChange() {
+        console.log("Hey");
         this.props.onUserInput(this.refs.filterTextInput.value);
     }
 }

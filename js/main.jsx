@@ -43,5 +43,3 @@ ReactDOM.render(
     <FilterableMembersList countriesWithMembers={data} />,
     document.getElementById('FilterableMembersList')
 );
-
-throw "Hey there";
