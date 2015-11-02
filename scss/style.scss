@@ -1,7 +1,25 @@
 @import "components/Base";
 
-body{
-  color: black;
-  transition: width 1s ease;
-  border: 1px solid blue;
+
+li {
+  margin-bottom: 20px;
+}
+
+li.book {
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+}
+
+ul {
+  list-style-type: none;
+}
+
+input,
+button {
+  font-size: 36px;
+  padding: 10px;
+}
+
+button {
+  margin-left: 20px;
 }

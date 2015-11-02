@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Title</title>
+</head>
+
+<body>
+    <h1>Search books by institution</h1>
+    <input type="text" name="InstitutionSearch" placeholder="Type institution here">
+
+    <h2>{{InstitutionName.length}} books found for {{InstitutionName}}</h2>
+    <ul id="Books">
+        <li><strong>Title: </strong> {{title}}, <strong>DOI: </strong> {{doi}}</li>
+    </ul>
+
+</body>
+</html>
