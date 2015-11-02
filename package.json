@@ -9,14 +9,15 @@
     "test": "node_modules/karma/bin/karma start",
     "test-once": "node_modules/karma/bin/karma start --single-run",
     "lint": "jsxhint js",
-    "clean": "rm -r static/* && mkdirp static/js && mkdirp static/css",
+    "clean": "rm -r static/* && mkdir static/js && mkdir static/css",
     "update-autoprefixer": "npm update caniuse-db",
     "watch:css": "watch 'npm run build:css' scss",
     "watch:js": "watch 'npm run build:js' js",
     "build:css": "sass scss/style.scss --sourcemap=auto static/css/style.css && postcss --use autoprefixer --autoprefixer.browsers 'last 5 versions' static/css/style.css -o static/css/style.css && cssmin static/css/style.css > static/css/style.min.css",
-    "build:js": "browserify js/main.js --transform=babelify --extension=jsx --debug > static/js/build.js && uglifyjs static/js/build.js > static/js/build.min.js",
-    "build:prod": "npm run update-autoprefixer && npm run clean && npm run build:css && npm run build:js",
-    "build:dev": "npm run clean && parallelshell 'npm run watch:css' 'npm run watch:js'"
+    "build:js": "browserify js/main.jsx --transform=babelify --extension=jsx --debug > static/js/build.js && uglifyjs static/js/build.js > static/js/build.min.js",
+    "build:html": "cp index.html static/index.html",
+    "build:prod": "npm run update-autoprefixer && npm run clean && npm run build:css && npm run build:js && npm run build:html",
+    "build:dev": "npm run clean && parallelshell 'npm run watch:css' 'npm run watch:js' 'npm run build:html'"
   },
   "dependencies": {
     "react": "^0.14.0",
@@ -63,6 +64,6 @@
     "webpack-dev-server": "^1.12.1"
   },
   "engines": {
-    "node": ">= 0.10.32"
+    "node": ">= 0.12.2"
   }
 }
